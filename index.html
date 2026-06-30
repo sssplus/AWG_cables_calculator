@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Comprehensive guide to industrial cables and connectors across 30+ industries — from factory automation to aerospace, renewable energy, and healthcare." />
+  <title>CableSpec Pro — Industrial Cables & Connectors Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background canvas for animated particles -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="logo-icon">⚡</div>
+        <span class="logo-text">CableSpec<span class="logo-accent">Pro</span></span>
+      </div>
+      <div class="nav-search-wrap">
+        <input type="text" id="global-search" class="nav-search" placeholder="Search industry, cable type, connector…" />
+        <span class="search-icon">🔍</span>
+      </div>
+      <div class="nav-stats">
+        <span class="stat-badge"><span id="industry-count">30+</span> Industries</span>
+        <span class="stat-badge">200+ Connectors</span>
+      </div>
+      <div class="nav-tabs">
+        <a class="nav-tab" href="#awg-section">AWG Guide</a>
+        <a class="nav-tab" href="#standards-section">Standards</a>
+        <a class="nav-tab" href="#cat-industrial">Industries</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Complete Industrial Reference</div>
+      <h1 class="hero-title">Cables & Connectors<br /><span class="gradient-text">Across Industries</span></h1>
+      <p class="hero-subtitle">From factory floors to satellite systems — discover the exact cables and connectors powering every major industry sector worldwide.</p>
+      <div class="hero-pills">
+        <button class="pill active" data-filter="all" id="pill-all">All Industries</button>
+        <button class="pill" data-filter="industrial">Industrial</button>
+        <button class="pill" data-filter="transport">Transportation</button>
+        <button class="pill" data-filter="energy">Energy</button>
+        <button class="pill" data-filter="tech">Technology</button>
+        <button class="pill" data-filter="healthcare">Healthcare</button>
+        <button class="pill" data-filter="infrastructure">Infrastructure</button>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="connector-orbit" id="connector-orbit"></div>
+    </div>
+  </header>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-num" data-target="34">0</span>
+        <span class="stat-label">Industry Sectors</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="210">0</span>
+        <span class="stat-label">Connector Types</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="85">0</span>
+        <span class="stat-label">Cable Standards</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="48">0</span>
+        <span class="stat-label">IP Rating Classes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       AWG CABLE & CONNECTOR SIZING GUIDE
+       ═══════════════════════════════════════════════════ -->
+  <section class="awg-guide" id="awg-section">
+    <div class="awg-inner">
+
+      <!-- Section header -->
+      <div class="awg-header">
+        <div class="awg-header-left">
+          <div class="awg-badge">Engineering Reference</div>
+          <h2 class="awg-title">AWG Cable &amp; Connector<br /><span class="gradient-text">Sizing Compatibility Guide</span></h2>
+          <p class="awg-subtitle">Find the exact AWG gauge → cross-section → sheath type → outer diameter → connector series (M5/M8/M12/M16/M23) with pin count and gender options.</p>
+        </div>
+        <div class="awg-header-right">
+          <div class="awg-legend">
+            <div class="legend-item"><span class="legend-dot" style="background:#38bdf8"></span>Signal / Data</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#fb923c"></span>Power</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#34d399"></span>Hybrid</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#a78bfa"></span>High-Freq / RF</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab switcher -->
+      <div class="awg-tabs" id="awg-tabs">
+        <button class="awg-tab-btn active" data-tab="awg-table">📐 AWG Reference Table</button>
+        <button class="awg-tab-btn" data-tab="sheath-compat">🧪 Sheath Compatibility</button>
+        <button class="awg-tab-btn" data-tab="connector-matrix">🔌 Connector Matrix</button>
+        <button class="awg-tab-btn" data-tab="m-series-detail">📋 M-Series Specs</button>
+      </div>
+
+      <!-- TAB 1: AWG Reference Table -->
+      <div class="awg-panel active" id="awg-table">
+        <div class="panel-intro">Complete AWG to metric conversion with conductor diameter, current capacity, resistance, and typical cable outer diameter per sheath type.</div>
+        <div class="awg-table-wrap">
+          <table class="awg-ref-table" id="awg-ref-table">
+            <thead>
+              <tr>
+                <th>AWG</th>
+                <th>mm²</th>
+                <th>Cond. Ø</th>
+                <th>Current<br/>(60°C)</th>
+                <th>Resistance<br/>(Ω/km)</th>
+                <th>PVC Cable Ø</th>
+                <th>PUR Cable Ø</th>
+                <th>TPE Cable Ø</th>
+                <th>Silicone Ø</th>
+                <th>Typical Use</th>
+              </tr>
+            </thead>
+            <tbody id="awg-tbody"></tbody>
+          </table>
+        </div>
+        <div class="awg-footnote">* Cable OD shown is for single-core. Multi-core cables have larger ODs. Values are indicative; verify with manufacturer datasheets. Current per NEC 310.15 / IEC 60364.</div>
+      </div>
+
+      <!-- TAB 2: Sheath Compatibility -->
+      <div class="awg-panel" id="sheath-compat">
+        <div class="panel-intro">Each jacket material has different temperature, chemical, and flexibility properties — affecting which connector series and environments it can be used in.</div>
+        <div class="sheath-cards" id="sheath-cards"></div>
+      </div>
+
+      <!-- TAB 3: Connector Matrix (Main interactive tool) -->
+      <div class="awg-panel" id="connector-matrix">
+        <div class="panel-intro">Select an AWG gauge to instantly highlight all compatible M-series connectors, pin configurations, and genders. Green = compatible · Orange = marginal · Grey = incompatible.</div>
+
+        <!-- AWG Selector -->
+        <div class="awg-selector-row">
+          <span class="selector-label">Select AWG:</span>
+          <div class="awg-selector" id="awg-selector"></div>
+        </div>
+
+        <!-- Sheath filter -->
+        <div class="awg-selector-row" style="margin-top:0.8rem">
+          <span class="selector-label">Sheath:</span>
+          <div class="sheath-btns" id="sheath-btns">
+            <button class="sheath-btn active" data-sheath="all">All</button>
+            <button class="sheath-btn" data-sheath="PVC">PVC</button>
+            <button class="sheath-btn" data-sheath="PUR">PUR</button>
+            <button class="sheath-btn" data-sheath="TPE">TPE</button>
+            <button class="sheath-btn" data-sheath="Silicone">Silicone</button>
+          </div>
+        </div>
+
+        <!-- Matrix grid -->
+        <div class="compat-matrix" id="compat-matrix"></div>
+
+        <!-- Cable OD readout -->
+        <div class="od-readout" id="od-readout">
+          <span class="od-label">📏 Estimated Cable OD for selected AWG + Sheath:</span>
+          <div class="od-values" id="od-values"></div>
+        </div>
+      </div>
+
+      <!-- TAB 4: M-Series Detail -->
+      <div class="awg-panel" id="m-series-detail">
+        <div class="panel-intro">Detailed specifications for each M-series circular connector family — cable entry range, pin counts, gender options, keying codes, and IP ratings.</div>
+        <div class="mseries-cards" id="mseries-cards"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       STANDARDS & TECHNICAL REFERENCE SECTION
+       ═══════════════════════════════════════════════════ -->
+  <section class="standards-guide" id="standards-section">
+    <div class="std-inner">
+
+      <!-- Header -->
+      <div class="std-section-header">
+        <div>
+          <div class="std-badge">📚 Fact-Checked Technical Reference</div>
+          <h2 class="std-title">Standards &amp; Regulations<br /><span class="gradient-text">Deep Dive</span></h2>
+          <p class="std-subtitle">IEC, ASTM, and IP rating standards — verified against authoritative sources. Includes IEC 61076-2-101 Edition 4 (2024) changes, IEC 60228 Edition 4 (2023), ASTM B-series conductor standards, and more.</p>
+        </div>
+        <div class="std-fact-badge">
+          <div class="fact-icon">✓</div>
+          <div class="fact-label">47 claims<br/>independently<br/>fact-checked</div>
+        </div>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="std-tabs" id="std-tabs">
+        <button class="std-tab-btn active" data-tab="std-iec61076">🔌 IEC 61076-2-101 Ed.4</button>
+        <button class="std-tab-btn" data-tab="std-ip-ratings">🌊 IP Ratings &amp; Connector Gender</button>
+        <button class="std-tab-btn" data-tab="std-iec60228">🔩 IEC 60228 Ed.4 &amp; Conductor Classes</button>
+        <button class="std-tab-btn" data-tab="std-astm">⚗️ ASTM Standards Database</button>
+      </div>
+
+      <!-- TAB 1: IEC 61076-2-101 -->
+      <div class="std-panel active" id="std-iec61076"></div>
+
+      <!-- TAB 2: IP Ratings + Gender -->
+      <div class="std-panel" id="std-ip-ratings"></div>
+
+      <!-- TAB 3: IEC 60228 -->
+      <div class="std-panel" id="std-iec60228"></div>
+
+      <!-- TAB 4: ASTM -->
+      <div class="std-panel" id="std-astm"></div>
+
+    </div>
+  </section>
+
+  <!-- Category Sections -->
+  <main class="main-content" id="main-content">
+
+    <!-- CATEGORY: Industrial & Manufacturing -->
+    <section class="category-section" id="cat-industrial">
+      <div class="cat-header">
+        <div class="cat-icon-wrap" style="--cat-color: #f97316;">🏭</div>
+        <div>
+          <h2 class="cat-title">Industrial &amp; Manufacturing</h2>
+          <p class="cat-desc">Heavy-duty environments demand rugged connectors with high IP ratings, vibration resistance, and EMI shielding.</p>
+        </div>
+      </div>
+      <div class="cards-grid" id="grid-industrial"></div>
+    </section>
+
+    <!-- CATEGORY: Transportation & Automotive -->
+    <section class="category-section" id="cat-transport">
+      <div class="cat-header">
+        <div class="cat-icon-wrap" style="--cat-color: #3b82f6;">🚗</div>
+        <div>
+          <h2 class="cat-title">Transportation &amp; Automotive</h2>
+          <p class="cat-desc">Mobile platforms require vibration-proof, temperature-rated connectors meeting automotive and aerospace standards.</p>
+        </div>
+      </div>
+      <div class="cards-grid" id="grid-transport"></div>
+    </section>
+
+    <!-- CATEGORY: Energy & Environment -->
+    <section class="category-section" id="cat-energy">
+      <div class="cat-header">
+        <div class="cat-icon-wrap" style="--cat-color: #22c55e;">⚡</div>
+        <div>
+          <h2 class="cat-title">Energy &amp; Environment</h2>
+          <p class="cat-desc">High-voltage, weather-resistant, and explosion-proof ratings are critical for energy infrastructure applications.</p>
+        </div>
+      </div>
+      <div class="cards-grid" id="grid-energy"></div>
+    </section>
+
+    <!-- CATEGORY: Technology & Communications -->
+    <section class="category-section" id="cat-tech">
+      <div class="cat-header">
+        <div class="cat-icon-wrap" style="--cat-color: #a855f7;">💻</div>
+        <div>
+          <h2 class="cat-title">Technology &amp; Communications</h2>
+          <p class="cat-desc">High-speed data transmission demands low-loss cables, impedance matching, and EMI-controlled connectors.</p>
+        </div>
+      </div>
+      <div class="cards-grid" id="grid-tech"></div>
+    </section>
+
+    <!-- CATEGORY: Healthcare & Science -->
+    <section class="category-section" id="cat-healthcare">
+      <div class="cat-header">
+        <div class="cat-icon-wrap" style="--cat-color: #ec4899;">🏥</div>
+        <div>
+          <h2 class="cat-title">Healthcare &amp; Science</h2>
+          <p class="cat-desc">Medical-grade connectors require biocompatibility, fluid resistance, and reliable signal integrity for patient safety.</p>
+        </div>
+      </div>
+      <div class="cards-grid" id="grid-healthcare"></div>
+    </section>
+
+    <!-- CATEGORY: Infrastructure, Agriculture & Others -->
+    <section class="category-section" id="cat-infrastructure">
+      <div class="cat-header">
+        <div class="cat-icon-wrap" style="--cat-color: #14b8a6;">🌐</div>
+        <div>
+          <h2 class="cat-title">Infrastructure, Agriculture &amp; Others</h2>
+          <p class="cat-desc">Outdoor and smart environment applications need UV-resistant, weatherproof cables with IoT compatibility.</p>
+        </div>
+      </div>
+      <div class="cards-grid" id="grid-infrastructure"></div>
+    </section>
+
+  </main>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card" id="modal-card">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-header">
+        <div class="modal-icon" id="modal-icon"></div>
+        <div>
+          <div class="modal-industry-tag" id="modal-tag"></div>
+          <h2 class="modal-title" id="modal-title"></h2>
+        </div>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">⚡ CableSpec<span style="color:var(--accent)">Pro</span></div>
+      <p class="footer-sub">Comprehensive industrial cable & connector reference for engineers and specifiers worldwide.</p>
+      <div class="footer-tags" id="footer-tags"></div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="awg-data.js"></script>
+  <script src="standards-data.js"></script>
+  <script src="app.js"></script>
+  <script src="awg-app.js"></script>
+  <script src="standards-app.js"></script>
+</body>
+</html>
